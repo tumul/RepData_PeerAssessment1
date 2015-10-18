@@ -164,11 +164,22 @@ The impact of imputing missing data on the estimates of the total daily number o
 ```{r}
 compAggData<-cbind(aggData,aggData_new$Steps)
 colnames(compAggData)<-c('Date','NASteps','CompSteps')
-qplot(NASteps,data=compAggData)
-qplot(CompSteps,data=compAggData)
-
-qplot(NASteps,data=compAggData,geom="density")
-qplot(CompSteps,data=compAggData,geom="density")
+```
+Histogram with NA step values 
+```{r}
+qplot(NASteps,data=compAggData,main="Histogram with NA step values")
+```
+Histogram with imputed step values
+```{r}
+qplot(CompSteps,data=compAggData,main="Histogram with imputed step values")
+```
+NA Step values
+```{r}
+qplot(NASteps,data=compAggData,geom="density",main="NA Step values")
+```
+Imputed Step values
+```{r}
+qplot(CompSteps,data=compAggData,geom="density",main="Imputed Step values")
 ```
 
 ## Are there differences in activity patterns between weekdays and weekends?

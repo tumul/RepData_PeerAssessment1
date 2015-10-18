@@ -885,40 +885,47 @@ The impact of imputing missing data on the estimates of the total daily number o
 ```r
 compAggData<-cbind(aggData,aggData_new$Steps)
 colnames(compAggData)<-c('Date','NASteps','CompSteps')
-qplot(NASteps,data=compAggData)
+```
+Histogram with NA step values 
+
+```r
+qplot(NASteps,data=compAggData,main="Histogram with NA step values")
 ```
 
 ```
 ## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
 ```
 
-![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18-1.png) 
+![plot of chunk unnamed-chunk-19](figure/unnamed-chunk-19-1.png) 
+Histogram with imputed step values
 
 ```r
-qplot(CompSteps,data=compAggData)
+qplot(CompSteps,data=compAggData,main="Histogram with imputed step values")
 ```
 
 ```
 ## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
 ```
 
-![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18-2.png) 
+![plot of chunk unnamed-chunk-20](figure/unnamed-chunk-20-1.png) 
+NA Step values
 
 ```r
-qplot(NASteps,data=compAggData,geom="density")
+qplot(NASteps,data=compAggData,geom="density",main="NA Step values")
 ```
 
 ```
 ## Warning: Removed 8 rows containing non-finite values (stat_density).
 ```
 
-![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18-3.png) 
+![plot of chunk unnamed-chunk-21](figure/unnamed-chunk-21-1.png) 
+Imputed Step values
 
 ```r
-qplot(CompSteps,data=compAggData,geom="density")
+qplot(CompSteps,data=compAggData,geom="density",main="Imputed Step values")
 ```
 
-![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18-4.png) 
+![plot of chunk unnamed-chunk-22](figure/unnamed-chunk-22-1.png) 
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
@@ -953,4 +960,4 @@ avg <- rbind(avg1,avg2)
 xyplot(steps~interval|Day,data=avg,FUN=mean,layout=c(1,2),type="l")
 ```
 
-![plot of chunk unnamed-chunk-20](figure/unnamed-chunk-20-1.png) 
+![plot of chunk unnamed-chunk-24](figure/unnamed-chunk-24-1.png) 
