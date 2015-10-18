@@ -6,20 +6,198 @@ output:
 ---
 
 
-## Loading and preprocessing the data
+## Loading and preprocessing the data  
 
+Reading 'activity.csv' and storing in data frame 'df'  
 
+```{r}
+df<-read.csv('activity.csv')
+```
 
 ## What is mean total number of steps taken per day?
 
+1) Calculate the total number of steps taken per day :
 
+```{r}
+aggData <- aggregate(df$steps,by=list(Date=df$date), FUN=sum)
+colnames(aggData)<-c("Date","Steps")
+print(aggData)
+```
 
-## What is the average daily activity pattern?
+2) If you do not understand the difference between a histogram and a barplot, research the difference between them. Make a histogram of the total number of steps taken each day  
 
+```{r}
+library(ggplot2)
+hist_1 <- qplot(Steps,data=aggData)
+print(hist_1)
+```
 
+3) Calculate and report the mean and median of the total number of steps taken per day  
 
-## Imputing missing values
+Mean is :  
+```{r}
+meanData_1 <- aggregate(df$steps,by=list(Date=df$date), FUN=mean)
+print(meanData_1)
+``` 
 
+Median is :  
+```{r}
+medianData_1 <- aggregate(df$steps,by=list(Date=df$date), FUN=median)
+print(medianData_1)
+```
 
+Overall Mean of the total number of steps taken every day :  
+```{r}
+mean_1 <- mean(aggData[complete.cases(aggData),]$Steps)
+print(mean_1)
+``` 
+
+Overall Median of the total number of steps taken every day :  
+```{r}
+median_1 <- median(aggData[complete.cases(aggData),]$Steps)
+print(median_1)
+```
+
+## What is the average daily activity pattern?  
+
+1) Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)  
+
+```{r}
+avg_acc_dates <- aggregate(steps~interval,data=df,FUN=mean,na.rm=TRUE)
+print(avg_acc_dates)
+
+library(lattice)
+time_plot_1 <- xyplot(steps~interval,data=avg_acc_dates,type="l")
+print(time_plot_1)
+``` 
+
+2) Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?  
+
+Interval with maximum number of steps:  
+
+```{r}
+max_steps_interval <- avg_acc_dates[which(avg_acc_dates$steps == max(avg_acc_dates$steps)),]$interval
+print(max_steps_interval)
+```  
+
+## Imputing missing values  
+
+1) Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)  
+
+Total number of rows with NAs:  
+
+```{r}
+no_of_na <- dim(df[!complete.cases(df),])[1]
+print(no_of_na)
+```  
+
+2) Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.  
+
+Replacing NAs by the mean for that 5-minute interval across all days  
+
+```{r}
+nav<-df[is.na(df$steps),]
+for (i in 1:dim(nav)[1]){
+a<-nav[i,]
+x<-a$interval
+s<-avg_acc_dates[which(avg_acc_dates$interval==x),]$steps
+nav[i,]$steps<-s
+}
+```
+
+3) Create a new dataset that is equal to the original dataset but with the missing data filled in.   
+
+```{r}
+df_new <- df
+df_new[is.na(df_new$steps),]<-nav
+```  
+
+4) Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?   
+
+'''{r}
+aggData_new <- aggregate(df_new$steps,by=list(Date=df_new$date), FUN=sum)
+colnames(aggData_new)<-c("Date","Steps")
+print(aggData_new)
+
+hist_2 <- qplot(Steps,data=aggData_new)
+print(hist_2)
+'''
+
+New Mean is :  
+```{r}
+meanData_2 <- aggregate(df_new$steps,by=list(Date=df_new$date), FUN=mean)
+print(meanData_2)
+``` 
+
+New Median is :  
+```{r}
+medianData_2 <- aggregate(df_new$steps,by=list(Date=df_new$date), FUN=median)
+print(medianData_2)
+```
+
+New overall Mean of the total number of steps taken every day :  
+```{r}
+mean_2 <- mean(aggData_new[complete.cases(aggData_new),]$Steps)
+print(mean_2)
+``` 
+
+New overall Median of the total number of steps taken every day :  
+```{r}
+median_2 <- median(aggData_new[complete.cases(aggData_new),]$Steps)
+print(median_2)
+```
+
+The overall mean values of the old and new Dataset don't differ, but the overall medians do.
+```{r}
+print("Old Mean:")
+print(mean_1)   
+print("Old median")
+print(median_1)
+
+print("New Mean:")
+print(mean_2)
+print("New median")
+print(median_2)
+```
+The impact of imputing missing data on the estimates of the total daily number of steps expressed using plots.
+
+```{r}
+compAggData<-cbind(aggData,aggData_new$Steps)
+colnames(compAggData)<-c('Date','NASteps','CompSteps')
+qplot(NASteps,data=compAggData)
+qplot(CompSteps,data=compAggData)
+
+qplot(NASteps,data=compAggData,geom="density")
+qplot(CompSteps,data=compAggData,geom="density")
+```
 
 ## Are there differences in activity patterns between weekdays and weekends?
+
+For this part the weekdays() function may be of some help here. Use the dataset with the filled-in missing values for this part.
+
+1) Create a new factor variable in the dataset with two levels – “weekday” and “weekend” indicating whether a given date is a weekday or weekend day.
+```{r}
+df_new["Day"] = ""
+we<-c("Saturday","Sunday")
+
+for(i in 1:dim(df_new)[1]){
+    if(summary(weekdays(as.Date(df_new[i,]$date))==we)[2]<2){
+        df_new[i,]$Day <- "weekend"
+    }
+    else if(summary(weekdays(as.Date(df_new[i,]$date))==we)[2]==2){
+        df_new[i,]$Day <- "weekday"
+    }
+}
+
+df_new <- transform(df_new,Day=factor(Day))
+```
+2) Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.
+
+```{r}
+x<-df_new[which(df_new$Day=="weekday"),]
+y<-df_new[which(df_new$Day=="weekend"),]
+avg1 <- cbind(aggregate(steps~interval,data=x,FUN=mean),Day=rep("weekday"))
+avg2 <- cbind(aggregate(steps~interval,data=y,FUN=mean),Day=rep("weekend"))
+avg <- rbind(avg1,avg2)
+xyplot(steps~interval|Day,data=avg,FUN=mean,layout=c(1,2),type="l")
+```
