@@ -108,151 +108,7 @@ print(hist_1)
 
 3) Calculate and report the mean and median of the total number of steps taken per day  
 
-Mean is :  
-
-```r
-meanData_1 <- aggregate(df$steps,by=list(Date=df$date), FUN=mean)
-print(meanData_1)
-```
-
-```
-##          Date          x
-## 1  2012-10-01         NA
-## 2  2012-10-02  0.4375000
-## 3  2012-10-03 39.4166667
-## 4  2012-10-04 42.0694444
-## 5  2012-10-05 46.1597222
-## 6  2012-10-06 53.5416667
-## 7  2012-10-07 38.2465278
-## 8  2012-10-08         NA
-## 9  2012-10-09 44.4826389
-## 10 2012-10-10 34.3750000
-## 11 2012-10-11 35.7777778
-## 12 2012-10-12 60.3541667
-## 13 2012-10-13 43.1458333
-## 14 2012-10-14 52.4236111
-## 15 2012-10-15 35.2048611
-## 16 2012-10-16 52.3750000
-## 17 2012-10-17 46.7083333
-## 18 2012-10-18 34.9166667
-## 19 2012-10-19 41.0729167
-## 20 2012-10-20 36.0937500
-## 21 2012-10-21 30.6284722
-## 22 2012-10-22 46.7361111
-## 23 2012-10-23 30.9652778
-## 24 2012-10-24 29.0104167
-## 25 2012-10-25  8.6527778
-## 26 2012-10-26 23.5347222
-## 27 2012-10-27 35.1354167
-## 28 2012-10-28 39.7847222
-## 29 2012-10-29 17.4236111
-## 30 2012-10-30 34.0937500
-## 31 2012-10-31 53.5208333
-## 32 2012-11-01         NA
-## 33 2012-11-02 36.8055556
-## 34 2012-11-03 36.7048611
-## 35 2012-11-04         NA
-## 36 2012-11-05 36.2465278
-## 37 2012-11-06 28.9375000
-## 38 2012-11-07 44.7326389
-## 39 2012-11-08 11.1770833
-## 40 2012-11-09         NA
-## 41 2012-11-10         NA
-## 42 2012-11-11 43.7777778
-## 43 2012-11-12 37.3784722
-## 44 2012-11-13 25.4722222
-## 45 2012-11-14         NA
-## 46 2012-11-15  0.1423611
-## 47 2012-11-16 18.8923611
-## 48 2012-11-17 49.7881944
-## 49 2012-11-18 52.4652778
-## 50 2012-11-19 30.6979167
-## 51 2012-11-20 15.5277778
-## 52 2012-11-21 44.3993056
-## 53 2012-11-22 70.9270833
-## 54 2012-11-23 73.5902778
-## 55 2012-11-24 50.2708333
-## 56 2012-11-25 41.0902778
-## 57 2012-11-26 38.7569444
-## 58 2012-11-27 47.3819444
-## 59 2012-11-28 35.3576389
-## 60 2012-11-29 24.4687500
-## 61 2012-11-30         NA
-```
-
-Median is :  
-
-```r
-medianData_1 <- aggregate(df$steps,by=list(Date=df$date), FUN=median)
-print(medianData_1)
-```
-
-```
-##          Date  x
-## 1  2012-10-01 NA
-## 2  2012-10-02  0
-## 3  2012-10-03  0
-## 4  2012-10-04  0
-## 5  2012-10-05  0
-## 6  2012-10-06  0
-## 7  2012-10-07  0
-## 8  2012-10-08 NA
-## 9  2012-10-09  0
-## 10 2012-10-10  0
-## 11 2012-10-11  0
-## 12 2012-10-12  0
-## 13 2012-10-13  0
-## 14 2012-10-14  0
-## 15 2012-10-15  0
-## 16 2012-10-16  0
-## 17 2012-10-17  0
-## 18 2012-10-18  0
-## 19 2012-10-19  0
-## 20 2012-10-20  0
-## 21 2012-10-21  0
-## 22 2012-10-22  0
-## 23 2012-10-23  0
-## 24 2012-10-24  0
-## 25 2012-10-25  0
-## 26 2012-10-26  0
-## 27 2012-10-27  0
-## 28 2012-10-28  0
-## 29 2012-10-29  0
-## 30 2012-10-30  0
-## 31 2012-10-31  0
-## 32 2012-11-01 NA
-## 33 2012-11-02  0
-## 34 2012-11-03  0
-## 35 2012-11-04 NA
-## 36 2012-11-05  0
-## 37 2012-11-06  0
-## 38 2012-11-07  0
-## 39 2012-11-08  0
-## 40 2012-11-09 NA
-## 41 2012-11-10 NA
-## 42 2012-11-11  0
-## 43 2012-11-12  0
-## 44 2012-11-13  0
-## 45 2012-11-14 NA
-## 46 2012-11-15  0
-## 47 2012-11-16  0
-## 48 2012-11-17  0
-## 49 2012-11-18  0
-## 50 2012-11-19  0
-## 51 2012-11-20  0
-## 52 2012-11-21  0
-## 53 2012-11-22  0
-## 54 2012-11-23  0
-## 55 2012-11-24  0
-## 56 2012-11-25  0
-## 57 2012-11-26  0
-## 58 2012-11-27  0
-## 59 2012-11-28  0
-## 60 2012-11-29  0
-## 61 2012-11-30 NA
-```
-
-Overall Mean of the total number of steps taken every day :  
+Mean of the total number of steps taken every day :  
 
 ```r
 mean_1 <- mean(aggData[complete.cases(aggData),]$Steps)
@@ -263,7 +119,7 @@ print(mean_1)
 ## [1] 10766.19
 ```
 
-Overall Median of the total number of steps taken every day :  
+Median of the total number of steps taken every day :  
 
 ```r
 median_1 <- median(aggData[complete.cases(aggData),]$Steps)
@@ -582,7 +438,7 @@ time_plot_1 <- xyplot(steps~interval,data=avg_acc_dates,type="l")
 print(time_plot_1)
 ```
 
-![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png) 
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png) 
 
 2) Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?  
 
@@ -639,160 +495,90 @@ df_new[is.na(df_new$steps),]<-nav
 
 4) Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?   
 
-'''{r}
+
+```r
 aggData_new <- aggregate(df_new$steps,by=list(Date=df_new$date), FUN=sum)
 colnames(aggData_new)<-c("Date","Steps")
 print(aggData_new)
+```
 
+```
+##          Date    Steps
+## 1  2012-10-01 10766.19
+## 2  2012-10-02   126.00
+## 3  2012-10-03 11352.00
+## 4  2012-10-04 12116.00
+## 5  2012-10-05 13294.00
+## 6  2012-10-06 15420.00
+## 7  2012-10-07 11015.00
+## 8  2012-10-08 10766.19
+## 9  2012-10-09 12811.00
+## 10 2012-10-10  9900.00
+## 11 2012-10-11 10304.00
+## 12 2012-10-12 17382.00
+## 13 2012-10-13 12426.00
+## 14 2012-10-14 15098.00
+## 15 2012-10-15 10139.00
+## 16 2012-10-16 15084.00
+## 17 2012-10-17 13452.00
+## 18 2012-10-18 10056.00
+## 19 2012-10-19 11829.00
+## 20 2012-10-20 10395.00
+## 21 2012-10-21  8821.00
+## 22 2012-10-22 13460.00
+## 23 2012-10-23  8918.00
+## 24 2012-10-24  8355.00
+## 25 2012-10-25  2492.00
+## 26 2012-10-26  6778.00
+## 27 2012-10-27 10119.00
+## 28 2012-10-28 11458.00
+## 29 2012-10-29  5018.00
+## 30 2012-10-30  9819.00
+## 31 2012-10-31 15414.00
+## 32 2012-11-01 10766.19
+## 33 2012-11-02 10600.00
+## 34 2012-11-03 10571.00
+## 35 2012-11-04 10766.19
+## 36 2012-11-05 10439.00
+## 37 2012-11-06  8334.00
+## 38 2012-11-07 12883.00
+## 39 2012-11-08  3219.00
+## 40 2012-11-09 10766.19
+## 41 2012-11-10 10766.19
+## 42 2012-11-11 12608.00
+## 43 2012-11-12 10765.00
+## 44 2012-11-13  7336.00
+## 45 2012-11-14 10766.19
+## 46 2012-11-15    41.00
+## 47 2012-11-16  5441.00
+## 48 2012-11-17 14339.00
+## 49 2012-11-18 15110.00
+## 50 2012-11-19  8841.00
+## 51 2012-11-20  4472.00
+## 52 2012-11-21 12787.00
+## 53 2012-11-22 20427.00
+## 54 2012-11-23 21194.00
+## 55 2012-11-24 14478.00
+## 56 2012-11-25 11834.00
+## 57 2012-11-26 11162.00
+## 58 2012-11-27 13646.00
+## 59 2012-11-28 10183.00
+## 60 2012-11-29  7047.00
+## 61 2012-11-30 10766.19
+```
+
+```r
 hist_2 <- qplot(Steps,data=aggData_new)
 print(hist_2)
-'''
-
-New Mean is :  
-
-```r
-meanData_2 <- aggregate(df_new$steps,by=list(Date=df_new$date), FUN=mean)
-print(meanData_2)
 ```
 
 ```
-##          Date          x
-## 1  2012-10-01 37.3825996
-## 2  2012-10-02  0.4375000
-## 3  2012-10-03 39.4166667
-## 4  2012-10-04 42.0694444
-## 5  2012-10-05 46.1597222
-## 6  2012-10-06 53.5416667
-## 7  2012-10-07 38.2465278
-## 8  2012-10-08 37.3825996
-## 9  2012-10-09 44.4826389
-## 10 2012-10-10 34.3750000
-## 11 2012-10-11 35.7777778
-## 12 2012-10-12 60.3541667
-## 13 2012-10-13 43.1458333
-## 14 2012-10-14 52.4236111
-## 15 2012-10-15 35.2048611
-## 16 2012-10-16 52.3750000
-## 17 2012-10-17 46.7083333
-## 18 2012-10-18 34.9166667
-## 19 2012-10-19 41.0729167
-## 20 2012-10-20 36.0937500
-## 21 2012-10-21 30.6284722
-## 22 2012-10-22 46.7361111
-## 23 2012-10-23 30.9652778
-## 24 2012-10-24 29.0104167
-## 25 2012-10-25  8.6527778
-## 26 2012-10-26 23.5347222
-## 27 2012-10-27 35.1354167
-## 28 2012-10-28 39.7847222
-## 29 2012-10-29 17.4236111
-## 30 2012-10-30 34.0937500
-## 31 2012-10-31 53.5208333
-## 32 2012-11-01 37.3825996
-## 33 2012-11-02 36.8055556
-## 34 2012-11-03 36.7048611
-## 35 2012-11-04 37.3825996
-## 36 2012-11-05 36.2465278
-## 37 2012-11-06 28.9375000
-## 38 2012-11-07 44.7326389
-## 39 2012-11-08 11.1770833
-## 40 2012-11-09 37.3825996
-## 41 2012-11-10 37.3825996
-## 42 2012-11-11 43.7777778
-## 43 2012-11-12 37.3784722
-## 44 2012-11-13 25.4722222
-## 45 2012-11-14 37.3825996
-## 46 2012-11-15  0.1423611
-## 47 2012-11-16 18.8923611
-## 48 2012-11-17 49.7881944
-## 49 2012-11-18 52.4652778
-## 50 2012-11-19 30.6979167
-## 51 2012-11-20 15.5277778
-## 52 2012-11-21 44.3993056
-## 53 2012-11-22 70.9270833
-## 54 2012-11-23 73.5902778
-## 55 2012-11-24 50.2708333
-## 56 2012-11-25 41.0902778
-## 57 2012-11-26 38.7569444
-## 58 2012-11-27 47.3819444
-## 59 2012-11-28 35.3576389
-## 60 2012-11-29 24.4687500
-## 61 2012-11-30 37.3825996
+## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
 ```
 
-New Median is :  
+![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11-1.png) 
 
-```r
-medianData_2 <- aggregate(df_new$steps,by=list(Date=df_new$date), FUN=median)
-print(medianData_2)
-```
-
-```
-##          Date        x
-## 1  2012-10-01 34.11321
-## 2  2012-10-02  0.00000
-## 3  2012-10-03  0.00000
-## 4  2012-10-04  0.00000
-## 5  2012-10-05  0.00000
-## 6  2012-10-06  0.00000
-## 7  2012-10-07  0.00000
-## 8  2012-10-08 34.11321
-## 9  2012-10-09  0.00000
-## 10 2012-10-10  0.00000
-## 11 2012-10-11  0.00000
-## 12 2012-10-12  0.00000
-## 13 2012-10-13  0.00000
-## 14 2012-10-14  0.00000
-## 15 2012-10-15  0.00000
-## 16 2012-10-16  0.00000
-## 17 2012-10-17  0.00000
-## 18 2012-10-18  0.00000
-## 19 2012-10-19  0.00000
-## 20 2012-10-20  0.00000
-## 21 2012-10-21  0.00000
-## 22 2012-10-22  0.00000
-## 23 2012-10-23  0.00000
-## 24 2012-10-24  0.00000
-## 25 2012-10-25  0.00000
-## 26 2012-10-26  0.00000
-## 27 2012-10-27  0.00000
-## 28 2012-10-28  0.00000
-## 29 2012-10-29  0.00000
-## 30 2012-10-30  0.00000
-## 31 2012-10-31  0.00000
-## 32 2012-11-01 34.11321
-## 33 2012-11-02  0.00000
-## 34 2012-11-03  0.00000
-## 35 2012-11-04 34.11321
-## 36 2012-11-05  0.00000
-## 37 2012-11-06  0.00000
-## 38 2012-11-07  0.00000
-## 39 2012-11-08  0.00000
-## 40 2012-11-09 34.11321
-## 41 2012-11-10 34.11321
-## 42 2012-11-11  0.00000
-## 43 2012-11-12  0.00000
-## 44 2012-11-13  0.00000
-## 45 2012-11-14 34.11321
-## 46 2012-11-15  0.00000
-## 47 2012-11-16  0.00000
-## 48 2012-11-17  0.00000
-## 49 2012-11-18  0.00000
-## 50 2012-11-19  0.00000
-## 51 2012-11-20  0.00000
-## 52 2012-11-21  0.00000
-## 53 2012-11-22  0.00000
-## 54 2012-11-23  0.00000
-## 55 2012-11-24  0.00000
-## 56 2012-11-25  0.00000
-## 57 2012-11-26  0.00000
-## 58 2012-11-27  0.00000
-## 59 2012-11-28  0.00000
-## 60 2012-11-29  0.00000
-## 61 2012-11-30 34.11321
-```
-
-New overall Mean of the total number of steps taken every day :  
+New Mean of the total number of steps taken every day :  
 
 ```r
 mean_2 <- mean(aggData_new[complete.cases(aggData_new),]$Steps)
@@ -803,7 +589,7 @@ print(mean_2)
 ## [1] 10766.19
 ```
 
-New overall Median of the total number of steps taken every day :  
+New Median of the total number of steps taken every day :  
 
 ```r
 median_2 <- median(aggData_new[complete.cases(aggData_new),]$Steps)
@@ -815,14 +601,7 @@ print(median_2)
 ```
 
 The overall mean values of the old and new Dataset don't differ, but the overall medians do.
-
-```r
-print("Old Mean:")
-```
-
-```
-## [1] "Old Mean:"
-```
+Old Mean and Median Values :
 
 ```r
 print(mean_1)   
@@ -833,14 +612,6 @@ print(mean_1)
 ```
 
 ```r
-print("Old median")
-```
-
-```
-## [1] "Old median"
-```
-
-```r
 print(median_1)
 ```
 
@@ -848,13 +619,7 @@ print(median_1)
 ## [1] 10765
 ```
 
-```r
-print("New Mean:")
-```
-
-```
-## [1] "New Mean:"
-```
+Imputed Mean and Median Values :
 
 ```r
 print(mean_2)
@@ -865,28 +630,23 @@ print(mean_2)
 ```
 
 ```r
-print("New median")
-```
-
-```
-## [1] "New median"
-```
-
-```r
 print(median_2)
 ```
 
 ```
 ## [1] 10766.19
 ```
-The impact of imputing missing data on the estimates of the total daily number of steps expressed using plots.
+The impact of imputing missing data on the estimates of the total daily number of steps expressed using plots:
 
+Creating a data frame from the old and new aggregate data frames.
 
 ```r
 compAggData<-cbind(aggData,aggData_new$Steps)
 colnames(compAggData)<-c('Date','NASteps','CompSteps')
 ```
-Histogram with NA step values 
+
+Histogram with NA step values :
+
 
 ```r
 qplot(NASteps,data=compAggData,main="Histogram with NA step values")
@@ -896,8 +656,10 @@ qplot(NASteps,data=compAggData,main="Histogram with NA step values")
 ## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
 ```
 
-![plot of chunk unnamed-chunk-19](figure/unnamed-chunk-19-1.png) 
-Histogram with imputed step values
+![plot of chunk unnamed-chunk-17](figure/unnamed-chunk-17-1.png) 
+
+Histogram with imputed step values :
+
 
 ```r
 qplot(CompSteps,data=compAggData,main="Histogram with imputed step values")
@@ -907,8 +669,10 @@ qplot(CompSteps,data=compAggData,main="Histogram with imputed step values")
 ## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
 ```
 
-![plot of chunk unnamed-chunk-20](figure/unnamed-chunk-20-1.png) 
-NA Step values
+![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18-1.png) 
+
+NA Step values :
+
 
 ```r
 qplot(NASteps,data=compAggData,geom="density",main="NA Step values")
@@ -918,14 +682,16 @@ qplot(NASteps,data=compAggData,geom="density",main="NA Step values")
 ## Warning: Removed 8 rows containing non-finite values (stat_density).
 ```
 
-![plot of chunk unnamed-chunk-21](figure/unnamed-chunk-21-1.png) 
-Imputed Step values
+![plot of chunk unnamed-chunk-19](figure/unnamed-chunk-19-1.png) 
+
+Imputed Step values :
+
 
 ```r
 qplot(CompSteps,data=compAggData,geom="density",main="Imputed Step values")
 ```
 
-![plot of chunk unnamed-chunk-22](figure/unnamed-chunk-22-1.png) 
+![plot of chunk unnamed-chunk-20](figure/unnamed-chunk-20-1.png) 
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
@@ -957,7 +723,10 @@ y<-df_new[which(df_new$Day=="weekend"),]
 avg1 <- cbind(aggregate(steps~interval,data=x,FUN=mean),Day=rep("weekday"))
 avg2 <- cbind(aggregate(steps~interval,data=y,FUN=mean),Day=rep("weekend"))
 avg <- rbind(avg1,avg2)
+```
+
+```r
 xyplot(steps~interval|Day,data=avg,FUN=mean,layout=c(1,2),type="l")
 ```
 
-![plot of chunk unnamed-chunk-24](figure/unnamed-chunk-24-1.png) 
+![plot of chunk unnamed-chunk-23](figure/unnamed-chunk-23-1.png) 
